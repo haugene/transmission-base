@@ -11,15 +11,15 @@ Published on Docker Hub as [`haugene/transmission-base`](https://hub.docker.com/
 ## Consume in a downstream Dockerfile
 
 ```dockerfile
-FROM haugene/transmission-base:4.1.3-ubuntu26.04
+FROM haugene/transmission-base:4.1.4-ubuntu26.04
 ```
 
 Pinning options:
 
 | Pin | Example | When to use |
 | --- | --- | --- |
-| Floating tag | `4.1.3-ubuntu26.04` | Normal dependency; picks up rebuilds for the same Transmission + Ubuntu major (security / base patch refreshes) |
-| Immutable tag | `4.1.3-ubuntu26.04-a1b2c3d` | Reproducible builds; never moves once published |
+| Floating tag | `4.1.4-ubuntu26.04` | Normal dependency; picks up rebuilds for the same Transmission + Ubuntu major (security / base patch refreshes) |
+| Immutable tag | `4.1.4-ubuntu26.04-a1b2c3d` | Reproducible builds; never moves once published |
 | Digest | `haugene/transmission-base@sha256:…` | Strongest reproducibility |
 
 ## Tag format
@@ -33,8 +33,8 @@ Tags encode **Transmission version** and **Ubuntu version**:
 
 Examples:
 
-- `4.1.3-ubuntu26.04` — current build of Transmission 4.1.3 on Ubuntu 26.04
-- `4.1.3-ubuntu26.04-a1b2c3d` — that same combo from commit `a1b2c3d`
+- `4.1.4-ubuntu26.04` — current build of Transmission 4.1.4 on Ubuntu 26.04
+- `4.1.4-ubuntu26.04-a1b2c3d` — that same combo from commit `a1b2c3d`
 
 ### Dev channel
 
@@ -42,16 +42,16 @@ Pushes to the `dev` branch publish a separate channel so unfinished work does
 not look like a release:
 
 - `dev`
-- `4.1.3-ubuntu26.04-dev`
-- `4.1.3-ubuntu26.04-dev-{sha}`
+- `4.1.4-ubuntu26.04-dev`
+- `4.1.4-ubuntu26.04-dev-{sha}`
 
 ## Build arguments
 
 | Arg | Default | Purpose |
 | --- | --- | --- |
 | `UBUNTU_VERSION` | `26.04` | Ubuntu LTS tag used for both build and runtime stages |
-| `TRANSMISSION_VERSION` | `4.1.3` | Transmission release built from the official source tarball |
-| `TRANSMISSION_SHA256` | `ce7d2d8b…` | Expected SHA-256 of that tarball (bump together with the version) |
+| `TRANSMISSION_VERSION` | `4.1.4` | Transmission release built from the official source tarball |
+| `TRANSMISSION_SHA256` | `86e7aa02…` | Expected SHA-256 of that tarball (bump together with the version) |
 
 `UBUNTU_VERSION` selects the Ubuntu tag, but the runtime library package
 names in the Dockerfile are chosen for the default LTS (currently 26.04).
@@ -68,9 +68,9 @@ Override versions explicitly (checksum from [transmissionbt.com/download](https:
 ```bash
 docker build \
   --build-arg UBUNTU_VERSION=26.04 \
-  --build-arg TRANSMISSION_VERSION=4.1.3 \
-  --build-arg TRANSMISSION_SHA256=ce7d2d8b101f7eb54bc3cf0bc55f52f7ebd4a25fa48e00bdca9a7e0fc02617da \
-  -t haugene/transmission-base:4.1.3-ubuntu26.04 \
+  --build-arg TRANSMISSION_VERSION=4.1.4 \
+  --build-arg TRANSMISSION_SHA256=86e7aa020cdf64826447034bc85f4d3b7c848d8c0891d9dc9b9fddfb2c805d22 \
+  -t haugene/transmission-base:4.1.4-ubuntu26.04 \
   .
 ```
 
@@ -81,9 +81,9 @@ local Docker engine; `--push` publishes them to a registry (CI does this):
 docker buildx build \
   --platform linux/amd64,linux/arm64,linux/arm/v7 \
   --build-arg UBUNTU_VERSION=26.04 \
-  --build-arg TRANSMISSION_VERSION=4.1.3 \
-  --build-arg TRANSMISSION_SHA256=ce7d2d8b101f7eb54bc3cf0bc55f52f7ebd4a25fa48e00bdca9a7e0fc02617da \
-  -t haugene/transmission-base:4.1.3-ubuntu26.04 \
+  --build-arg TRANSMISSION_VERSION=4.1.4 \
+  --build-arg TRANSMISSION_SHA256=86e7aa020cdf64826447034bc85f4d3b7c848d8c0891d9dc9b9fddfb2c805d22 \
+  -t haugene/transmission-base:4.1.4-ubuntu26.04 \
   --push \
   .
 ```

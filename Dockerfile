@@ -5,9 +5,9 @@
 # Build arguments (override at build time to retarget versions)
 # -----------------------------------------------------------------------------
 ARG UBUNTU_VERSION=26.04
-ARG TRANSMISSION_VERSION=4.1.3
+ARG TRANSMISSION_VERSION=4.1.4
 # From https://transmissionbt.com/download — bump together with TRANSMISSION_VERSION.
-ARG TRANSMISSION_SHA256=ce7d2d8b101f7eb54bc3cf0bc55f52f7ebd4a25fa48e00bdca9a7e0fc02617da
+ARG TRANSMISSION_SHA256=86e7aa020cdf64826447034bc85f4d3b7c848d8c0891d9dc9b9fddfb2c805d22
 
 # -----------------------------------------------------------------------------
 # Stage 1: build Transmission from the official release tarball
